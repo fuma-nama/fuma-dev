@@ -29,6 +29,7 @@ module.exports = {
             },
             colors: {
                 foreground: "#ffffff",
+                background: "#000000",
                 "muted-foreground": "#dedede",
             },
         },
