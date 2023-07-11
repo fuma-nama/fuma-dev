@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Home() {
     return (
         <main className="flex flex-col min-h-screen bg-gradient-to-t from-white/5 to-50% to-black">
-            <div className="container flex flex-col pt-10 md:py-28">
+            <div className="container flex flex-col pt-10 md:pt-28">
                 <Nav>
                     <div className="flex flex-row gap-2 items-start">
                         <Image
@@ -72,6 +72,29 @@ export default function Home() {
                     </Link>
                     , to find something you're interested.
                 </p>
+                <div className="pt-4 mt-24 border-t border-muted-foreground text-sm flex flex-row gap-4">
+                    <a
+                        href="https://github.com/SonMooSans"
+                        rel="noreferrer noopener"
+                        target="_blank"
+                    >
+                        Github
+                    </a>
+                    <a
+                        href="https://discord.gg/QmgmFhg"
+                        rel="noreferrer noopener"
+                        target="_blank"
+                    >
+                        Discord
+                    </a>
+                    <a
+                        href="https://twitter.com/money_is_shark"
+                        rel="noreferrer noopener"
+                        target="_blank"
+                    >
+                        Twitter
+                    </a>
+                </div>
             </div>
 
             <Footer />
