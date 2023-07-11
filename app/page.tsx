@@ -1,41 +1,31 @@
+import { Nav } from "@/components/nav";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
     return (
         <main className="flex flex-col min-h-screen bg-gradient-to-t from-white/5 to-50% to-black">
-            <div className="container flex flex-col pt-10 md:py-32">
-                <div className="flex flex-row gap-2">
-                    <Image
-                        alt="me"
-                        src="/me.jpg"
-                        width={44}
-                        height={44}
-                        className="rounded-full aspect-square max-sm:hidden"
-                    />
-                    <div>
-                        <p className="font-medium sm:text-lg">Money</p>
-                        <p className="text-muted-foreground/70 text-sm">
-                            I am a...
-                        </p>
+            <div className="container flex flex-col pt-10 md:py-28">
+                <Nav>
+                    <div className="flex flex-row gap-2 items-start">
+                        <Image
+                            alt="me"
+                            src="/me.jpg"
+                            width={36}
+                            height={36}
+                            className="rounded-full aspect-square max-sm:hidden"
+                        />
+                        <div>
+                            <p className="font-medium">Money</p>
+                            <p className="text-muted-foreground/70 text-xs">
+                                I am a shark
+                            </p>
+                        </div>
                     </div>
-
-                    <Link
-                        href="/projects"
-                        className="ml-auto text-sm transition-colors hover:text-muted-foreground"
-                    >
-                        Projects
-                    </Link>
-                    <Link
-                        href="/blog"
-                        className="ml-8 text-sm transition-colors hover:text-muted-foreground"
-                    >
-                        Blog
-                    </Link>
-                </div>
+                </Nav>
                 <svg
                     viewBox="0 0 120 25"
-                    className="max-w-xs drop-shadow-[0px_0_1rem_blue] my-4 mr-20"
+                    className="max-w-[240px] drop-shadow-[0px_0_1rem_blue] mb-4 mr-32 max-sm:hidden"
                 >
                     <text
                         x="0"
@@ -47,20 +37,17 @@ export default function Home() {
                         className="animate-text-dash"
                         fill="rgba(255,255,255,0.4)"
                     >
-                        Web Developer
+                        Welcome
                     </text>
                 </svg>
 
                 <p className="text-muted-foreground text-sm">
                     Hi, I am a developer living in Hong Kong, passionated on
                     creative jobs. I enjoy the process of creating something,
-                    anything. I've been a UI Designer as well as a Web Developer
-                    for 5 years.
+                    anything. Exploring a wide spectrum of things is the most
+                    valuable experience in my life. From a video, article to a
+                    website, they are the ways to express a feeling or thought.
                     <br />
-                    <br />
-                    Exploring a wide spectrum of things is the most valuable
-                    experience in my life. From a video, article to a website,
-                    they are the ways to express a feeling or thought. <br />
                     <br />
                     Since secondary school, I have joined some algorithm
                     competitions and worked on various open-source projects as a
@@ -120,7 +107,7 @@ function Footer() {
                     width="750"
                     height="305"
                     filterUnits="userSpaceOnUse"
-                    color-interpolation-filters="sRGB"
+                    colorInterpolationFilters="sRGB"
                 >
                     <feOffset dx="3" dy="-12" />
                     <feGaussianBlur stdDeviation="24" />
@@ -134,8 +121,8 @@ function Footer() {
                     y2="228"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#D9D9D9" />
-                    <stop offset="1" stop-color="#000000" stop-opacity="0" />
+                    <stop stopColor="#D9D9D9" />
+                    <stop offset="1" stopColor="#000000" stopOpacity="0" />
                 </linearGradient>
             </defs>
         </svg>
