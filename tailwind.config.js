@@ -11,7 +11,7 @@ module.exports = {
                 center: true,
                 padding: "2rem",
                 screens: {
-                    "2xl": "800px",
+                    "2xl": "720px",
                 },
             },
             keyframes: {
