@@ -30,16 +30,19 @@ export default async function Blog() {
                             alt="yorushika"
                             src={Yorushika}
                             className="object-cover row-start-1 h-full"
+                            priority
                         />
                         <Image
                             alt="eve"
                             src={Eve}
                             className="object-cover row-start-2 w-full h-full"
+                            priority
                         />
                         <Image
                             alt="kanzaki iori"
                             src={Lori}
                             className="object-cover row-span-2 h-full"
+                            priority
                         />
                     </div>
                     <p className="max-sm:text-sm font-medium mt-4 mb-1">
