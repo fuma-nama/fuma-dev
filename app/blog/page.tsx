@@ -9,7 +9,7 @@ import { getPosts } from "@/lib/sanity";
 export default async function Blog() {
     //replaced by pinned banner
     const posts = (await getPosts()).filter(
-        (post) => post.slug === "i-enjoy-music"
+        (post) => post.slug !== "i-enjoy-music"
     );
 
     return (
