@@ -1,8 +1,8 @@
 import { createClient } from "next-sanity";
 
 const client = createClient({
-    projectId: "dfgch9es",
-    dataset: "production",
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.SANITY_API_DATASET,
     apiVersion: "2022-03-25",
     useCdn: false,
 });
