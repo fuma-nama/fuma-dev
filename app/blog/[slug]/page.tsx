@@ -1,7 +1,7 @@
 import { Nav } from "@/components/nav";
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
-import { getPost } from "@/lib/sanity";
+import { getPost, getPosts } from "@/lib/sanity";
 
 export default async function BlogPage({
     params,
@@ -23,4 +23,11 @@ export default async function BlogPage({
             </article>
         </main>
     );
+}
+
+export async function generateStaticParams() {
+    const posts = await getPosts();
+    return posts.map((post) => ({
+        slug: post.slug,
+    }));
 }
