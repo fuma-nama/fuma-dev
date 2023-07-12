@@ -7,6 +7,11 @@ const client = createClient({
     useCdn: false,
 });
 
+const preview_client = client.withConfig({
+    token: process.env.SANITY_API_READ_TOKEN,
+    perspective: "previewDrafts",
+});
+
 type Post = {
     _id: string;
     title: string;
@@ -15,36 +20,39 @@ type Post = {
     body: any;
 };
 
-export async function getPost(
-    slug: string
-): Promise<Pick<
+export type GetPostResult = Pick<
     Post,
     "_id" | "body" | "publishedAt" | "slug" | "title"
-> | null> {
-    const posts = await client.fetch(
-        `*[_type == "post" && slug.current == "${slug}"] {
+>[];
+
+export const getPostQuery = (
+    slug: string
+) => `*[_type == "post" && slug.current == "${slug}"] {
             _id,
             title,
             publishedAt,
             'slug': slug.current,
             body
-        }`
-    );
+        }`;
 
-    return posts[0];
-}
+export type GetPostsResult = Pick<
+    Post,
+    "_id" | "publishedAt" | "slug" | "title"
+>[];
 
-export async function getPosts(): Promise<
-    Pick<Post, "_id" | "publishedAt" | "slug" | "title">[]
-> {
-    const posts = await client.fetch(
-        `*[_type == "post"] | order(publishedAt desc) {
+export const getPostsQuery = `*[_type == "post"] | order(publishedAt desc) {
             _id,
             title,
             publishedAt,
             'slug': slug.current,
-        }`
-    );
+        }`;
 
-    return posts;
+export function getClient(preview: boolean) {
+    return preview ? preview_client : client;
+}
+
+export function createPreviewClient(token: string) {
+    return preview_client.withConfig({
+        token: token,
+    });
 }

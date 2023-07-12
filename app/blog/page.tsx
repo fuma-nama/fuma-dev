@@ -4,13 +4,15 @@ import Yorushika from "@/public/yorushika.jpg";
 import Lori from "@/public/iori-kanzaki.jpg";
 import Eve from "@/public/eve.jpg";
 import Link from "next/link";
-import { getPosts } from "@/lib/sanity";
+import { draftMode } from "next/headers";
+import { getPostsQuery, GetPostsResult, getClient } from "@/lib/sanity";
 
 export default async function Blog() {
-    //replaced by pinned banner
-    const posts = (await getPosts()).filter(
-        (post) => post.slug !== "i-enjoy-music"
+    const result: GetPostsResult = await getClient(draftMode().isEnabled).fetch(
+        getPostsQuery
     );
+    //replaced by pinned banner
+    const posts = result.filter((post) => post.slug !== "i-enjoy-music");
 
     return (
         <main className="container py-10 md:py-28">
