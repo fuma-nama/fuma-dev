@@ -2,6 +2,7 @@ import { Nav } from "@/components/nav";
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 import { getPost, getPosts } from "@/lib/sanity";
+import { SpotifyEmbed } from "@/components/spotify-embed";
 
 export default async function BlogPage({
     params,
@@ -19,7 +20,14 @@ export default async function BlogPage({
                 <h1 className="text-xl sm:text-2xl font-bold">{post.title}</h1>
             </Nav>
             <article className="prose prose-sm prose-invert">
-                <PortableText value={post.body} />
+                <PortableText
+                    value={post.body}
+                    components={{
+                        types: {
+                            "spotify-embed": SpotifyEmbed,
+                        },
+                    }}
+                />
             </article>
         </main>
     );
