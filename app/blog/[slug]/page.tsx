@@ -33,7 +33,7 @@ export default async function BlogPage({
                     {posts[0].title}
                 </h1>
             </Nav>
-            <article className="prose prose-sm prose-invert max-w-none">
+            <article className="prose prose-invert max-w-none max-sm:prose-sm">
                 {preview ? (
                     <PreviewProvider token={client.config().token!!}>
                         <PreviewText query={query} data={posts} />
