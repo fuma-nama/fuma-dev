@@ -12,7 +12,7 @@ const preview_client = client.withConfig({
     perspective: "previewDrafts",
 });
 
-type Post = {
+export type Post = {
     _id: string;
     title: string;
     slug: string;

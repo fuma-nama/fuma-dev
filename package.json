@@ -11,6 +11,7 @@
     "dependencies": {
         "@next/env": "^13.4.9",
         "@portabletext/react": "^3.0.4",
+        "@sanity/webhook": "^2.0.0",
         "@tailwindcss/typography": "^0.5.9",
         "@types/node": "20.4.1",
         "@types/react": "18.2.14",
