@@ -72,7 +72,7 @@ export default function Home() {
                     </Link>
                     , to find something you're interested.
                 </p>
-                <div className="pt-4 mt-24 border-t border-muted-foreground text-sm flex flex-row gap-4">
+                <div className="pt-12 mt-14 border-t border-muted-foreground/30 text-sm flex flex-row gap-4">
                     <a
                         href="https://github.com/SonMooSans"
                         rel="noreferrer noopener"

@@ -68,6 +68,12 @@ export default function Projects() {
                 My old and abandoned projects.
             </p>
             <div className="flex flex-col gap-4 mt-8">
+                <Card
+                    href="https://money-portfolio.vercel.app"
+                    title="Old Portfolio"
+                >
+                    My deprecated well-styled portfoilo which is outdated.
+                </Card>
                 <Card href="https://github.com/SonMooSans/jdak" title="JDAK">
                     Light Command framework for JDA written in Kotlin.
                 </Card>
