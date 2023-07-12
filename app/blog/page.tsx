@@ -46,7 +46,7 @@ export default async function Blog() {
                         />
                     </div>
                     <p className="max-sm:text-sm font-medium mt-4 mb-1">
-                        I enjoy Music
+                        I Enjoy Music
                     </p>
                     <p className="text-muted-foreground/70 text-xs sm:text-sm">
                         Share some of my favourite artists and songs.
