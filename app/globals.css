@@ -5,3 +5,7 @@
 body {
     @apply text-foreground bg-background selection:bg-foreground selection:text-background;
 }
+
+* {
+    @apply border-muted-foreground/30;
+}

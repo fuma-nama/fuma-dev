@@ -6,6 +6,7 @@ import Eve from "@/public/eve.jpg";
 import Link from "next/link";
 import { draftMode } from "next/headers";
 import { getPostsQuery, GetPostsResult, getClient } from "@/lib/sanity";
+import { PreviewAlert } from "@/components/preview-alert";
 
 export default async function Blog() {
     const result: GetPostsResult = await getClient(draftMode().isEnabled).fetch(
@@ -16,6 +17,7 @@ export default async function Blog() {
 
     return (
         <main className="container py-10 md:py-28">
+            <PreviewAlert />
             <Nav>
                 <h1 className="text-xl sm:text-2xl font-bold">Blog</h1>
             </Nav>
