@@ -29,7 +29,6 @@ export function PostBody({ value }: { value: any }) {
 async function CodeBlock({
     language = "text",
     code,
-    ...props
 }: {
     language?: string;
     code: string;

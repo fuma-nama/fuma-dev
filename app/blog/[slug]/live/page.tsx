@@ -1,17 +1,16 @@
 import { notFound } from "next/navigation";
-import {
-    getPostQuery,
-    getPostsQuery,
-    GetPostsResult,
-    getClient,
-    GetPostResult,
-} from "@/lib/sanity";
+import { getPostQuery, getClient, GetPostResult } from "@/lib/sanity";
 import { draftMode } from "next/headers";
+
 import Link from "next/link";
 import { PreviewAlert } from "@/components/preview-alert";
 import { PostBody } from "@/components/post-body";
+import { PreviewProvider, PreviewText } from "./preview";
 
-export default async function BlogPage({
+/**
+ * Used to ensure the main blog page is rendered at server-side only
+ */
+export default async function LiveBlogPage({
     params,
 }: {
     params: { slug: string };
@@ -44,16 +43,14 @@ export default async function BlogPage({
                 </Link>
             </div>
             <article className="prose prose-invert max-w-none max-sm:prose-sm">
-                <PostBody value={posts[0].body} />
+                {preview ? (
+                    <PreviewProvider token={client.config().token!!}>
+                        <PreviewText query={query} data={posts} />
+                    </PreviewProvider>
+                ) : (
+                    <PostBody value={posts[0].body} />
+                )}
             </article>
         </main>
     );
-}
-
-export async function generateStaticParams() {
-    const query: GetPostsResult = await getClient(false).fetch(getPostsQuery);
-
-    return query.map((post) => ({
-        slug: post.slug,
-    }));
 }
