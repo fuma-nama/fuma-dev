@@ -1,11 +1,16 @@
 import { PortableText } from "@portabletext/react";
 import { SpotifyEmbed } from "./spotify-embed";
-import { Highlight, themes, Prism } from "prism-react-renderer";
+import { getHighlighter, setCDN } from "shiki";
 
-if (Prism != null) {
-    global.Prism = Prism;
-    import("prismjs/components/prism-json" as any);
+if (typeof window !== "undefined") {
+    // load from cdn if it's in client component
+    setCDN("https://unpkg.com/shiki");
 }
+
+const highlighter = getHighlighter({
+    langs: ["json", "sql", "javascript", "typescript"],
+    theme: "dracula",
+});
 
 export function PostBody({ value }: { value: any }) {
     return (
@@ -21,30 +26,30 @@ export function PostBody({ value }: { value: any }) {
     );
 }
 
-function CodeBlock({
+async function CodeBlock({
     language = "text",
     code,
+    ...props
 }: {
     language?: string;
     code: string;
 }) {
+    const tokens = (await highlighter).codeToThemedTokens(
+        code,
+        language === "mysql" ? "sql" : language
+    );
+
     return (
-        <Highlight
-            theme={themes.nightOwl}
-            code={code}
-            language={language === "mysql" ? "sql" : language}
-        >
-            {({ style, tokens, getLineProps, getTokenProps }) => (
-                <pre style={style}>
-                    {tokens.map((line, i) => (
-                        <div key={i} {...getLineProps({ line })}>
-                            {line.map((token, key) => (
-                                <span key={key} {...getTokenProps({ token })} />
-                            ))}
-                        </div>
+        <pre className="border">
+            {tokens.map((line, i) => (
+                <div key={i}>
+                    {line.map((token, key) => (
+                        <span key={key} style={{ color: token.color }}>
+                            {token.content}
+                        </span>
                     ))}
-                </pre>
-            )}
-        </Highlight>
+                </div>
+            ))}
+        </pre>
     );
 }
