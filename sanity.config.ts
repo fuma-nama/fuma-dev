@@ -1,5 +1,6 @@
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
+import { codeInput } from "@sanity/code-input";
 
 import { schemaTypes } from "./schemas";
 
@@ -13,7 +14,7 @@ export default defineConfig({
     projectId,
     dataset,
 
-    plugins: [deskTool()],
+    plugins: [deskTool(), codeInput()],
 
     schema: {
         types: schemaTypes,
