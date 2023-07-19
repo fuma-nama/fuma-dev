@@ -1,14 +1,19 @@
 "use client";
 import { PortableText } from "@portabletext/react";
 import { SpotifyEmbed } from "@/components/spotify-embed";
-import { IThemedToken, getHighlighter, setCDN } from "shiki";
+import { Highlighter, IThemedToken, getHighlighter, setCDN } from "shiki";
 import { useEffect, useState } from "react";
 
-setCDN("https://unpkg.com/shiki");
-const highlighter = getHighlighter({
-    langs: ["json", "sql", "javascript", "typescript"],
-    theme: "dracula",
-});
+let highlighter: Promise<Highlighter>;
+
+if (typeof window !== "undefined") {
+    setCDN("https://unpkg.com/shiki");
+
+    highlighter = getHighlighter({
+        langs: ["json", "sql", "javascript", "typescript"],
+        theme: "dracula",
+    });
+}
 
 export function PostBody({ value }: { value: any }) {
     return (

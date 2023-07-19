@@ -5,6 +5,11 @@ import { getHighlighter } from "shiki";
 const highlighter = getHighlighter({
     langs: ["json", "sql", "javascript", "typescript"],
     theme: "dracula",
+    paths: {
+        themes: "themes/",
+        languages: "languages/",
+        wasm: "vscode-oniguruma/release/onig.wasm",
+    },
 });
 
 export function PostBody({ value }: { value: any }) {
