@@ -1,9 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    experimental: {
-        // fix shiki can't be resolved
-        serverComponentsExternalPackages: ["vscode-oniguruma", "shiki"],
-    },
-};
+const nextConfig = {};
 
 module.exports = nextConfig;

@@ -1,22 +1,11 @@
 import { PortableText } from "@portabletext/react";
 import { SpotifyEmbed } from "./spotify-embed";
-import { getHighlighter } from "shiki";
-import { resolve } from "path";
+import type { Highlighter } from "shiki";
+const { getHighlighter } = require("shiki");
 
-const highlighter = getHighlighter({
+const highlighter: Promise<Highlighter> = getHighlighter({
     langs: ["json", "sql", "javascript", "typescript"],
     theme: "dracula",
-    paths: {
-        themes: resolve(__dirname, "../../../../../node_modules/shiki/themes/"),
-        languages: resolve(
-            __dirname,
-            "../../../../../node_modules/shiki/languages/"
-        ),
-        wasm: resolve(
-            __dirname,
-            "../../../../../node_modules/vscode-oniguruma/release/onig.wasm"
-        ),
-    },
 });
 
 export function PostBody({ value }: { value: any }) {
