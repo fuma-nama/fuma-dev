@@ -1,5 +1,11 @@
 import { PortableText } from "@portabletext/react";
 import { SpotifyEmbed } from "./spotify-embed";
+import { getHighlighter } from "shiki";
+
+const highlighter = getHighlighter({
+    langs: ["json", "sql", "javascript", "typescript"],
+    theme: "dracula",
+});
 
 export function PostBody({ value }: { value: any }) {
     return (
@@ -22,5 +28,22 @@ async function CodeBlock({
     language?: string;
     code: string;
 }) {
-    return <pre className="border">{code}</pre>;
+    const tokens = (await highlighter).codeToThemedTokens(
+        code,
+        language === "mysql" ? "sql" : language
+    );
+
+    return (
+        <pre className="border">
+            {tokens.map((line, i) => (
+                <div key={i}>
+                    {line.map((token, key) => (
+                        <span key={key} style={{ color: token.color }}>
+                            {token.content}
+                        </span>
+                    ))}
+                </div>
+            ))}
+        </pre>
+    );
 }
