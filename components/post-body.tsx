@@ -1,9 +1,10 @@
 import { PortableText } from "@portabletext/react";
 import { SpotifyEmbed } from "./spotify-embed";
 import { getHighlighter } from "shiki";
+import theme from "@/assets/dracula.json";
 
 const highlighter = await getHighlighter({
-    theme: "dracula",
+    theme: theme as any,
 });
 
 export function PostBody({ value }: { value: any }) {
