@@ -1,14 +1,21 @@
 import { PortableText } from "@portabletext/react";
 import { SpotifyEmbed } from "./spotify-embed";
 import { getHighlighter } from "shiki";
+import { resolve } from "path";
 
 const highlighter = getHighlighter({
     langs: ["json", "sql", "javascript", "typescript"],
     theme: "dracula",
     paths: {
-        themes: "themes/",
-        languages: "languages/",
-        wasm: "vscode-oniguruma/release/onig.wasm",
+        themes: resolve(__dirname, "../../../../../node_modules/shiki/themes/"),
+        languages: resolve(
+            __dirname,
+            "../../../../../node_modules/shiki/languages/"
+        ),
+        wasm: resolve(
+            __dirname,
+            "../../../../../node_modules/vscode-oniguruma/release/onig.wasm"
+        ),
     },
 });
 
