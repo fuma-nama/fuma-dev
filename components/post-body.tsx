@@ -1,10 +1,8 @@
 import { PortableText } from "@portabletext/react";
 import { SpotifyEmbed } from "./spotify-embed";
-import type { Highlighter } from "shiki";
-const { getHighlighter } = require("shiki");
+import { getHighlighter } from "shiki";
 
-const highlighter: Promise<Highlighter> = getHighlighter({
-    langs: ["json", "sql", "javascript", "typescript"],
+const highlighter = await getHighlighter({
     theme: "dracula",
 });
 
@@ -29,7 +27,7 @@ async function CodeBlock({
     language?: string;
     code: string;
 }) {
-    const tokens = (await highlighter).codeToThemedTokens(
+    const tokens = highlighter.codeToThemedTokens(
         code,
         language === "mysql" ? "sql" : language
     );
