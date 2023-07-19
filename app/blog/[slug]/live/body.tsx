@@ -1,12 +1,10 @@
+"use client";
 import { PortableText } from "@portabletext/react";
-import { SpotifyEmbed } from "./spotify-embed";
-import { getHighlighter, setCDN } from "shiki";
+import { SpotifyEmbed } from "@/components/spotify-embed";
+import { IThemedToken, getHighlighter, setCDN } from "shiki";
+import { useEffect, useState } from "react";
 
-if (typeof window !== "undefined") {
-    // load from cdn if it's in client component
-    setCDN("https://unpkg.com/shiki");
-}
-
+setCDN("https://unpkg.com/shiki");
 const highlighter = getHighlighter({
     langs: ["json", "sql", "javascript", "typescript"],
     theme: "dracula",
@@ -26,17 +24,25 @@ export function PostBody({ value }: { value: any }) {
     );
 }
 
-async function CodeBlock({
+const tokenize = async (code: string, language: string) => {
+    return (await highlighter).codeToThemedTokens(
+        code,
+        language === "mysql" ? "sql" : language
+    );
+};
+
+function CodeBlock({
     language = "text",
     code,
 }: {
     language?: string;
     code: string;
 }) {
-    const tokens = (await highlighter).codeToThemedTokens(
-        code,
-        language === "mysql" ? "sql" : language
-    );
+    const [tokens, setTokens] = useState<IThemedToken[][]>([]);
+
+    useEffect(() => {
+        tokenize(code, language).then((res) => setTokens(res));
+    }, [code, language]);
 
     return (
         <pre className="border">

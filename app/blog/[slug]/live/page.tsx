@@ -4,7 +4,6 @@ import { draftMode } from "next/headers";
 
 import Link from "next/link";
 import { PreviewAlert } from "@/components/preview-alert";
-import { PostBody } from "@/components/post-body";
 import { PreviewProvider, PreviewText } from "./preview";
 
 /**
@@ -21,7 +20,7 @@ export default async function LiveBlogPage({
 
     const posts: GetPostResult = await client.fetch(query);
 
-    if (posts.length === 0) {
+    if (!preview || posts.length === 0) {
         notFound();
     }
 
@@ -43,13 +42,9 @@ export default async function LiveBlogPage({
                 </Link>
             </div>
             <article className="prose prose-invert max-w-none max-sm:prose-sm">
-                {preview ? (
-                    <PreviewProvider token={client.config().token!!}>
-                        <PreviewText query={query} data={posts} />
-                    </PreviewProvider>
-                ) : (
-                    <PostBody value={posts[0].body} />
-                )}
+                <PreviewProvider token={client.config().token!!}>
+                    <PreviewText query={query} data={posts} />
+                </PreviewProvider>
             </article>
         </main>
     );

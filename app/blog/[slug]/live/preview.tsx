@@ -1,5 +1,5 @@
 "use client";
-import { PostBody } from "@/components/post-body";
+import { PostBody } from "./body";
 import { GetPostResult, createPreviewClient } from "@/lib/sanity";
 import { LiveQueryProvider, useLiveQuery } from "next-sanity/preview";
 import { ReactNode, useMemo } from "react";
