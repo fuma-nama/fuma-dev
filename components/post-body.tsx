@@ -2,8 +2,14 @@ import { PortableText } from "@portabletext/react";
 import { SpotifyEmbed } from "./spotify-embed";
 import { getHighlighter } from "shiki";
 import theme from "@/assets/dracula.json";
+import json from "@/assets/languages/json.tmLanguage.json";
+import sql from "@/assets/languages/sql.tmLanguage.json";
 
 const highlighter = await getHighlighter({
+    langs: [
+        { id: "sql", ...sql, grammar: sql },
+        { id: "json", ...json, grammar: json },
+    ] as any,
     theme: theme as any,
 });
 
