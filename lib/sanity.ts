@@ -1,4 +1,5 @@
 import { createClient } from "next-sanity";
+import { cache } from "react";
 
 const client = createClient({
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -7,10 +8,14 @@ const client = createClient({
     useCdn: false,
 });
 
+client.fetch = cache(client.fetch.bind(client));
+
 const preview_client = client.withConfig({
     token: process.env.SANITY_API_READ_TOKEN,
     perspective: "previewDrafts",
 });
+
+preview_client.fetch = cache(preview_client.fetch.bind(preview_client));
 
 export type Post = {
     _id: string;
@@ -18,11 +23,15 @@ export type Post = {
     slug: string;
     publishedAt: string;
     body: any;
+    categories: { title: string }[];
+    author: {
+        name: string;
+    };
 };
 
 export type GetPostResult = Pick<
     Post,
-    "_id" | "body" | "publishedAt" | "slug" | "title"
+    "_id" | "body" | "publishedAt" | "slug" | "title" | "author" | "categories"
 >[];
 
 export const getPostQuery = (
@@ -31,7 +40,9 @@ export const getPostQuery = (
             _id,
             title,
             publishedAt,
+            author->,
             'slug': slug.current,
+            'categories': categories[]->{title},
             body
         }`;
 
