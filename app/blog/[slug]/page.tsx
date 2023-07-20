@@ -10,17 +10,17 @@ import { draftMode } from "next/headers";
 import Link from "next/link";
 import { PreviewAlert } from "@/components/preview-alert";
 import { PostBody } from "@/components/post-body";
+import { Metadata } from "next";
 
 export default async function BlogPage({
     params,
 }: {
     params: { slug: string };
 }) {
-    const query = getPostQuery(params.slug);
     const preview = draftMode().isEnabled;
+    const query = getPostQuery(params.slug);
     const client = getClient(preview);
-
-    const posts: GetPostResult = await client.fetch(query);
+    const posts = await client.fetch<GetPostResult>(query);
 
     if (posts.length === 0) {
         notFound();
@@ -48,6 +48,36 @@ export default async function BlogPage({
             </article>
         </main>
     );
+}
+
+export async function generateMetadata({
+    params,
+}: {
+    params: { slug: string };
+}) {
+    const post = await getClient(false)
+        .fetch<GetPostResult>(getPostQuery(params.slug))
+        .then((res) => res[0]);
+
+    if (post == null) {
+        return;
+    }
+
+    const categories = post.categories.map((category) => category.title);
+    return {
+        title: post.title,
+        description: "My Personal Blog.",
+        authors: [{ name: post.author.name }],
+        category: categories.join(", "),
+        openGraph: {
+            tags: categories,
+            type: "article",
+            siteName: "Money Shark",
+            title: post.title,
+            description: "My Personal Blog.",
+            publishedTime: post.publishedAt,
+        },
+    } as Metadata;
 }
 
 export async function generateStaticParams() {
