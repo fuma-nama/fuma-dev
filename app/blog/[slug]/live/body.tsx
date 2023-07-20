@@ -1,18 +1,24 @@
 "use client";
-import { PortableText } from "@portabletext/react";
+import {
+    PortableText,
+    PortableTextTypeComponentProps,
+} from "@portabletext/react";
 import { SpotifyEmbed } from "@/components/spotify-embed";
 import { Highlighter, IThemedToken, getHighlighter, setCDN } from "shiki";
 import { useEffect, useState } from "react";
 
-let highlighter: Promise<Highlighter>;
+declare global {
+    var highlighter: Promise<Highlighter>;
+}
 
-if (typeof window !== "undefined") {
+async function get() {
+    if (global.highlighter != null) return global.highlighter;
+
     setCDN("https://unpkg.com/shiki");
-
-    highlighter = getHighlighter({
-        langs: ["json", "sql", "javascript", "typescript"],
+    return (global.highlighter = getHighlighter({
+        langs: ["json", "sql"],
         theme: "dracula",
-    });
+    }));
 }
 
 export function PostBody({ value }: { value: any }) {
@@ -21,7 +27,7 @@ export function PostBody({ value }: { value: any }) {
             value={value}
             components={{
                 types: {
-                    code: (props) => <CodeBlock {...props.value} />,
+                    code: CodeBlock,
                     "spotify-embed": SpotifyEmbed,
                 },
             }}
@@ -29,25 +35,24 @@ export function PostBody({ value }: { value: any }) {
     );
 }
 
-const tokenize = async (code: string, language: string) => {
-    return (await highlighter).codeToThemedTokens(
-        code,
-        language === "mysql" ? "sql" : language
-    );
-};
-
 function CodeBlock({
-    language = "text",
-    code,
-}: {
+    value: { language = "text", code },
+}: PortableTextTypeComponentProps<{
     language?: string;
     code: string;
-}) {
+}>) {
     const [tokens, setTokens] = useState<IThemedToken[][]>([]);
 
     useEffect(() => {
-        tokenize(code, language).then((res) => setTokens(res));
-    }, [code, language]);
+        get().then(async (highlighter) => {
+            const tokens = await highlighter.codeToThemedTokens(
+                code,
+                language === "mysql" ? "sql" : language
+            );
+
+            setTokens(tokens);
+        });
+    }, []);
 
     return (
         <pre className="border">

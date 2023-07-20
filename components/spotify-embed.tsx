@@ -1,7 +1,9 @@
-type ValueProps = { track: string };
+import { PortableTextComponentProps } from "@portabletext/react";
 
-export function SpotifyEmbed(props: any) {
-    const track = (props.value as ValueProps).track;
+export function SpotifyEmbed(
+    props: PortableTextComponentProps<{ track: string }>
+) {
+    const track = props.value.track;
 
     return (
         <iframe
