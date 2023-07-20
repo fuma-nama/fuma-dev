@@ -63,7 +63,7 @@ export async function generateMetadata({
         return;
     }
 
-    const categories = post.categories.map((category) => category.title);
+    const categories = post.categories?.map((category) => category.title) ?? [];
     return {
         title: post.title,
         description: "My Personal Blog.",

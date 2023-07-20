@@ -45,7 +45,7 @@ function CodeBlock({
 
     useEffect(() => {
         get().then(async (highlighter) => {
-            const tokens = await highlighter.codeToThemedTokens(
+            const tokens = highlighter.codeToThemedTokens(
                 code,
                 language === "mysql" ? "sql" : language
             );

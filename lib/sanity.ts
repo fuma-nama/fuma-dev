@@ -23,7 +23,7 @@ export type Post = {
     slug: string;
     publishedAt: string;
     body: any;
-    categories: { title: string }[];
+    categories?: { title: string }[];
     author: {
         name: string;
     };
