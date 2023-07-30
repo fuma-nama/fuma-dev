@@ -19,7 +19,7 @@ export default function Projects() {
                     href="https://next-docs-zeta.vercel.app"
                     title="Next Docs"
                 >
-                    The headless library to build content-based Next.js
+                    The powerful framework to build content-based Next.js
                     websites.
                 </Card>
                 <Card
