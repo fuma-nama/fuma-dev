@@ -16,10 +16,7 @@ export default function Projects() {
         <Card href="https://next-docs-zeta.vercel.app" title="Next Docs">
           The powerful framework to build content-based Next.js websites.
         </Card>
-        <Card
-          href="https://github.com/SonMooSans/discord-fp"
-          title="Discord FP"
-        >
+        <Card href="https://github.com/fuma-nama/discord-fp" title="Discord FP">
           A Beautiful Application Command Library for Discord.js and Discordeno.
         </Card>
       </div>
@@ -35,7 +32,7 @@ export default function Projects() {
         </Card>
 
         <Card
-          href="https://github.com/SonMooSans/nodeploy-cli"
+          href="https://github.com/fuma-nama/nodeploy-cli"
           title="No Deploy CLI"
         >
           A fake Rust CLI tool made for No Deploy.
@@ -64,10 +61,10 @@ export default function Projects() {
         <Card href="https://money-portfolio.vercel.app" title="Old Portfolio">
           My deprecated well-styled portfoilo which is outdated.
         </Card>
-        <Card href="https://github.com/SonMooSans/jdak" title="JDAK">
+        <Card href="https://github.com/fuma-nama/jdak" title="JDAK">
           Light Command framework for JDA written in Kotlin.
         </Card>
-        <Card href="https://github.com/SonMooSans/omagize" title="Omagize">
+        <Card href="https://github.com/fuma-nama/omagize" title="Omagize">
           The Chat App with a lot of features, written in Java and Typescript.
         </Card>
       </div>

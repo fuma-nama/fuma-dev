@@ -71,7 +71,7 @@ export default function Home() {
         </p>
         <div className="pt-12 mt-14 border-t border-muted-foreground/30 text-sm flex flex-row gap-4">
           <a
-            href="https://github.com/SonMooSans"
+            href="https://github.com/fuma-nama"
             rel="noreferrer noopener"
             target="_blank"
           >
