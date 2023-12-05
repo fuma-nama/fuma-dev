@@ -16,6 +16,9 @@ export default function Projects() {
         <Card href="https://next-docs-zeta.vercel.app" title="Next Docs">
           The powerful framework to build content-based Next.js websites.
         </Card>
+        <Card href="https://fuma-comment.vercel.app" title="Fuma Comment">
+          A comment area built for blogs & personal websites.
+        </Card>
         <Card href="https://github.com/fuma-nama/discord-fp" title="Discord FP">
           A Beautiful Application Command Library for Discord.js and Discordeno.
         </Card>
