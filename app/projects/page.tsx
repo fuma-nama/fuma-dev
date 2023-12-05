@@ -26,6 +26,10 @@ export default function Projects() {
       <h2 className="text-lg sm:text-xl font-bold mt-12 mb-2">My Toys</h2>
       <p className="text-sm text-muted-foreground">Small projects for fun.</p>
       <div className="flex flex-col gap-4 mt-8">
+        <Card href="https://kanji-animated.vercel.app" title="Kanji Animated">
+          Canvas-based animation inspired to the 命に嫌われている MV, support animated Japanese sentences/characters.
+        </Card>
+        
         <Card href="https://simple-game-pi.vercel.app" title="Simple Game">
           A funny game for consuming your free time.
         </Card>
